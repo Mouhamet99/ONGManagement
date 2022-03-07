@@ -1,8 +1,11 @@
 <?php
-
-use app\Application;
-
 require_once __DIR__.'/../vendor/autoload.php';
 
-$app = new Application();
+use App\core\Application;
+
+$app = new Application(dirname(__DIR__));
+
+$app->router->get('/', function(){
+    return 'Home Page';
+});
 $app->run();
