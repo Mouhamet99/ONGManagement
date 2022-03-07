@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Controllers;
+namespace App\src\Controllers;
 
-class ONGController
+use App\core\Application;
+
+class ONGController extends Controller
 {
     public function home()
     {
-
+        return Application::$app->router->renderView('home');
     }
 
     public function addONG()

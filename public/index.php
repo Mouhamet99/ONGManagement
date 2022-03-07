@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
 
-use App\Controllers\ONGController;
+use App\src\Controllers\ONGController;
 use App\core\Application;
 
 $app = new Application(dirname(__DIR__));

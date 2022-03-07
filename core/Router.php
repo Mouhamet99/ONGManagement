@@ -2,6 +2,7 @@
 
 namespace App\core;
 
+
 class Router
 {
     public Request $request;
@@ -14,7 +15,7 @@ class Router
         $this->response = $response;
     }
 
-    public function get(string $path, $callback)
+    public function get($path, $callback)
     {
         $this->routes['get'][$path] = $callback;
     }
@@ -28,11 +29,20 @@ class Router
         if ($callback === false) {
             return 'Not Found';
         }
-        if(is_string($callback)){
-
+        if (is_string($callback)) {
+            return $this->RenderView($callback);
+        }
+        if (is_array($callback)) {
+            Application::$app->setController(new $callback[0]());
+            $callback[0] = Application::$app->controller;
         }
 
-        return call_user_func($callback);
+        return call_user_func($callback, $this->request);
+    }
+
+    public function RenderView($view)
+    {
+        return include_once Application::$ROOT_PATH . "/Views/$view.php";
     }
 
 
