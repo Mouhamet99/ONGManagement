@@ -2,7 +2,7 @@
 
 namespace App\src\Controllers;
 
-use App\core\Application;
+use App\core\Request;
 
 class ONGController extends Controller
 {
@@ -11,9 +11,13 @@ class ONGController extends Controller
         return $this->render('home');
     }
 
-    public function addONG(): string
+    public function addONG(Request $request): string
     {
-        return $this->render('ongRegister');
+        if($request->isPostRequest()){
+            return 'Form Submitted';
+        }
+
+        return $this->render('newOngForm');
     }
 
 }

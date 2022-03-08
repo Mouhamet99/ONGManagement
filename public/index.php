@@ -9,6 +9,7 @@ $app = new Application(dirname(__DIR__));
 
 $app->router->get('/ong',[ONGController::class, 'home']);
 $app->router->get('/ong/new',[ONGController::class, 'addONG']);
+$app->router->post('/ong/new',[ONGController::class, 'addONG']);
 
 $app->router->get('/',[AuthController::class, 'login']);
 $app->router->post('/login',[AuthController::class, 'login']);

@@ -26,7 +26,7 @@ class Request
         return $this->getMethod() === "get";
     }
 
-    public function idPost(): bool
+    public function isPostRequest(): bool
     {
         return $this->getMethod() === "post";
     }
