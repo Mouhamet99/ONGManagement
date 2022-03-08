@@ -5,9 +5,9 @@ namespace App\core;
 
 class Router
 {
-    public Request $request;
-    public Response $response;
-    public array $routes = [];
+    private Request $request;
+    private Response $response;
+    private array $routes = [];
 
     public function __construct(Request $request, Response $response)
     {
@@ -15,9 +15,15 @@ class Router
         $this->response = $response;
     }
 
+
     public function get($path, $callback)
     {
         $this->routes['get'][$path] = $callback;
+    }
+
+    public function post($path, $callback)
+    {
+        $this->routes['post'][$path] = $callback;
     }
 
     public function resolve()
@@ -28,10 +34,10 @@ class Router
 
         if ($callback === false) {
             $this->response->setStatusCode('404');
-            return $this->RenderView('_404');
+            return $this->renderView('_404');
         }
         if (is_string($callback)) {
-            return $this->RenderView($callback);
+            return $this->renderView($callback);
         }
         if (is_array($callback)) {
             Application::$app->setController(new $callback[0]());
@@ -41,7 +47,7 @@ class Router
         return call_user_func($callback, $this->request);
     }
 
-    public function RenderView($view)
+    public function renderView($view)
     {
         $layout = Application::$app->getController()->getLayout();
         $layoutContent = $this->layoutContent($layout);
@@ -56,6 +62,7 @@ class Router
         include_once Application::$ROOT_PATH . "/Views/$view.php";
         return ob_get_clean();
     }
+
     public function layoutContent($layout)
     {
         ob_start();

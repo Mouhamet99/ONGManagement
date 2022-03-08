@@ -6,14 +6,14 @@ use App\core\Application;
 
 class ONGController extends Controller
 {
-    public function home()
+    public function home(): string
     {
-        return Application::$app->router->renderView('home');
+        return $this->render('home');
     }
 
-    public function addONG()
+    public function addONG(): string
     {
-          return Application::$app->router->renderView('ongRegister');
+        return $this->render('ongRegister');
     }
 
 }

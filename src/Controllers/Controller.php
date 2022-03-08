@@ -2,19 +2,22 @@
 
 namespace App\src\Controllers;
 
+use App\core\Application;
+
 class Controller
 {
     private string $layout = 'main';
 
-    public function render(): string
+    public function render($view): string
     {
-        return 'Render Some View';
+        return Application::$app->router->renderView($view);
     }
 
     public function getLayout(): string
     {
         return $this->layout;
     }
+
     public function setLayout($layout): void
     {
         $this->layout = $layout;
