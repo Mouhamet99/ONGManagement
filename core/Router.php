@@ -27,7 +27,8 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
-            return 'Not Found';
+            $this->response->setStatusCode('404');
+            return $this->RenderView('_404');
         }
         if (is_string($callback)) {
             return $this->RenderView($callback);
