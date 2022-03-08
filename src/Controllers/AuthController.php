@@ -8,6 +8,6 @@ class AuthController extends Controller
 {
     public function login(): string
     {
-        return $this->render('login');
+        return Application::$app->router->renderOnlyView('login');
     }
 }

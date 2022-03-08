@@ -13,11 +13,11 @@ class ONGController extends Controller
 
     public function addONG(Request $request): string
     {
-        if($request->isPostRequest()){
+        if ($request->isPostRequest()) {
             return 'Form Submitted';
         }
 
-        return $this->render('newOngForm');
+        return $this->render('newOng');
     }
 
 }

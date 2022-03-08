@@ -56,6 +56,11 @@ class Router
         return str_replace('{{body_content}}', $viewContent, $layoutContent);
     }
 
+    public function renderOnlyView($view)
+    {
+        return include_once Application::$ROOT_PATH . "/Views/$view.php";
+    }
+
     public function viewContent($view)
     {
         ob_start();

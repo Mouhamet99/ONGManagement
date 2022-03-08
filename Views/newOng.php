@@ -6,8 +6,6 @@
                     <div class="form-items">
                         <h3 class="text-center">Registration</h3>
                         <p class="text-center">Fill in the data below.</p>
-
-
                         <form class="requires-validation" novalidate action="" method="post">
                             <div class="col-md-12 my-4">
                                 <input class="form-control "
