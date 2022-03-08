@@ -13,7 +13,7 @@ class ONGController extends Controller
 
     public function addONG()
     {
-
+          return Application::$app->router->renderView('ongRegister');
     }
 
 }

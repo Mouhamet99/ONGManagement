@@ -7,4 +7,5 @@ use App\core\Application;
 $app = new Application(dirname(__DIR__));
 
 $app->router->get('/ong',[ONGController::class, 'home']);
+$app->router->get('/ong/new',[ONGController::class, 'addONG']);
 $app->run();
