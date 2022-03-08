@@ -15,7 +15,7 @@
     }
 
     .container h1 {
-        font-size: 10rem;
+        font-size: 5vw;
         margin-bottom: 10px;
     }
 
@@ -34,7 +34,7 @@
 <body>
 <div class="container">
 
-    <h1>404</h1>
+    <h1>Not Found Page (404)</h1>
     <p>Go Back <a href="/ong">Home</a></p>
 </div>
 </body>

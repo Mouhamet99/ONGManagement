@@ -43,7 +43,24 @@ class Router
 
     public function RenderView($view)
     {
-        return include_once Application::$ROOT_PATH . "/Views/$view.php";
+        $layout = Application::$app->getController()->getLayout();
+        $layoutContent = $this->layoutContent($layout);
+        $viewContent = $this->viewContent($view);
+
+        return str_replace('{{body_content}}', $viewContent, $layoutContent);
+    }
+
+    public function viewContent($view)
+    {
+        ob_start();
+        include_once Application::$ROOT_PATH . "/Views/$view.php";
+        return ob_get_clean();
+    }
+    public function layoutContent($layout)
+    {
+        ob_start();
+        include_once Application::$ROOT_PATH . "/Views/layouts/$layout.php";
+        return ob_get_clean();
     }
 
 
