@@ -20,7 +20,7 @@ class DBConnection
         $this->username = $username;
     }
 
-    public function getPDO(): PDO
+    public  function getPDO(): PDO
     {
         return $this->pdo ?? $this->pdo = new \PDO("mysql:dbname=$this->dbname;host=$this->host", $this->username, $this->password, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
