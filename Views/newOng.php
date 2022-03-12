@@ -1,3 +1,5 @@
+<?php
+?>
 <div class="container col-md-6 mt-5">
     <div class="form-body">
         <div class="row">
@@ -9,51 +11,91 @@
                         <form class="requires-validation" novalidate action="" method="post">
                             <div class="col-md-12 my-4">
                                 <input class="form-control "
-                                       type="text" name="full_name" value=""
-                                       placeholder="Full Name" required>
-                                <div class="valid-feedback">Username field is valid!</div>
+                                       type="text" name="name" value=""
+                                       placeholder="Nom d'entreprise" required>
+                                <div class="valid-feedback">Le Nom est valid!</div>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-12 my-4">
+                                <input class="form-control "
+                                       type="text" name="address" value=""
+                                       placeholder="Addresse de l'entreprise" required>
+                                <div class="valid-feedback">Le Nom est valid!</div>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-12 my-4">
+                                <input class="form-control "
+                                       type="text" name="commercial_register" value=""
+                                       placeholder="Registre Commercial" required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-12 my-4">
+                                <input class="form-control "
+                                       type="text" name="coordinates" value=""
+                                       placeholder="Coordonees GPS" required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-12 my-4">
+                                <input class="form-control "
+                                       type="number" name="employee_number" value=""
+                                       placeholder="Nombre d'employes" required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-12 my-4">
+                                <input class="form-control "
+                                       type="text" name="website" value=""
+                                       placeholder="Site Web" required>
+                                <div class="valid-feedback"></div>
                                 <div class="invalid-feedback"></div>
                             </div>
 
-                            <div class="col-md-12 my-4">
-                                <input class="form-control" type="email" name="email" placeholder="E-mail Address"
-                                       required>
-                                <div class="valid-feedback">Email field is valid!</div>
-                                <div class="invalid-feedback">Email field cannot be blank!</div>
-                            </div>
+
+<!--                            <div class="col-md-12 my-4">-->
+<!--                                <input class="form-control" type="email" name="email" placeholder="E-mail Address"-->
+<!--                                       required>-->
+<!--                                <div class="valid-feedback">Email field is valid!</div>-->
+<!--                                <div class="invalid-feedback">Email field cannot be blank!</div>-->
+<!--                            </div>-->
 
                             <div class="col-md-12 my-4">
-                                <select class="form-select mt-3" name="profession" required>
-                                    <option selected value="">Profession</option>
-                                    <option value="jweb">Junior Web Developer</option>
-                                    <option value="sweb">Senior Web Developer</option>
-                                    <option value="pmanager">Project Manager</option>
+                                <select class="form-select mt-3" name="sector" required>
+                                    <option selected value="">Secteur d'activite</option>
+                                    <option value="education">Education</option>
+                                    <option value="sante">Sante</option>
+                                    <option value="agriculture">Agriculture</option>
                                 </select>
-                                <div class="valid-feedback">You selected a position!</div>
-                                <div class="invalid-feedback">Please select a position!</div>
+                                <div class="valid-feedback">You selected a commune!</div>
+                                <div class="invalid-feedback">Please select a commune!</div>
                             </div>
-
-
                             <div class="col-md-12 my-4">
-                                <input class="form-control" type="password" name="password" placeholder="Password"
-                                       required>
-                                <div class="valid-feedback">Password field is valid!</div>
-                                <div class="invalid-feedback">Password field cannot be blank!</div>
+                                <select class="form-select mt-3" name="legal_form" required>
+                                    <option selected value="">Forme Juridique</option>
+                                    <option value="Entreprise unipersonnelle à responsabilité limitée (EURL)">Entreprise unipersonnelle à responsabilité limitée (EURL)	</option>
+                                </select>
+                                <div class="valid-feedback">You selected a commune!</div>
+                                <div class="invalid-feedback">Please select a commune!</div>
                             </div>
-                            <div class="col-md-12">
-                                <input class="form-control" type="password" name="confirm_password"
-                                       placeholder="Confirm Password" required>
-                                <div class="valid-feedback">Confirm Password field is not equal to password field!</div>
-                                <div class="invalid-feedback">Confirm Password field cannot be blank!</div>
+                            <div class="col-md-12 my-4">
+                                <select class="form-select mt-3" name="Commune_id" required>
+                                    <option selected value="">Commune</option>
+                                    <option value="1">SA</option>
+                                    <option value="1">SUARL</option>
+                                    <option value="1">SARL</option>
+                                </select>
+                                <div class="valid-feedback">You selected a commune!</div>
+                                <div class="invalid-feedback">Please select a commune!</div>
                             </div>
 
 
                             <div class="col-md-12 mt-3 my-4">
-                                <label class="mb-3 mr-1" for="gender">Gender: </label>
+                                <label class="mb-3 mr-1" for="gender">Have You.... </label>
 
                                 <input type="radio" class="btn-check" name="gender" id="male" value="male"
                                        autocomplete="off" checked>
-                                <label class="btn btn-sm btn-outline-secondary" for="male">Male</label>
+                                <label class="btn btn-sm btn-outline-secondary" for="male">Oui</label>
 
                                 <input type="radio" class="btn-check" name="gender" id="female" value="female"
                                        autocomplete="off">
