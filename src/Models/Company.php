@@ -12,8 +12,17 @@ class Company extends Model
     private string $website = "";
     private int $employee_number = 0;
     private string $address = "";
-    private string $legal_form = "Entreprise unipersonnelle à responsabilité limitée (EURL)";
+    private string $legal_form = 'Entreprise unipersonnelle à responsabilité limitée (EURL)';
     private int $Commune_id;
+    protected array $legal_form_options = array(
+        'EURL' => 'Entreprise unipersonnelle à responsabilité limitée (EURL)',
+        'SARL' => 'Société à responsabilité limitée (SARL)',
+        'SA' => 'Société anonyme (SA)',
+        'SNC' => 'Société par actions simplifiée (SAS)',
+        'SNC' => 'Société en nom collectif (SNC)',
+        'SCOP' => 'Société coopérative de production (SCOP)',
+        'SCA' => 'Société en commandite par actions (SCA)'
+    );
 
     /**
      * @return string
@@ -143,6 +152,22 @@ class Company extends Model
         $this->legal_form = $legal_form;
     }
 
+    /**
+     * @return array
+     */
+    public function getLegalFormOptions(): array
+    {
+        return $this->legal_form_options;
+    }
+
+    /**
+     * @param string $option
+     */
+    public function setLegalFormOption(string $option): void
+    {
+        $this->legal_form = $this->legal_form_options[$option];
+    }
+
 
     /**
      * @return int
@@ -171,14 +196,29 @@ class Company extends Model
         $attributes = implode(',', array_keys($data));
         $params = implode(',', array_map((fn($value): string => '?'), $data));
         $sql = "INSERT INTO {$this->table} ({$attributes}) VALUES ($params)";
-//        echo "(name, coordinates, created_at, commercial_register, sector, website,employee_number, address, Commune_id, legal_form)";
-//        die(print_r($data));
         $stmt = self::$db->getPDO()->prepare($sql);
         $stmt->execute(array_values($data));
-        return "COmpany Added Successfully";
-//        return self::$db->getPDO()->lastInsertId();
+
+        return "Company Added Successfully";
 
 
+    }
+
+    public function persist(array $data)
+    {
+        $this->setAddress($data['address']);
+        $this->setCommercialRegister($data['commercial_register']);
+        $this->setCoordinates($data['coordinates']);
+        $this->setEmployeeNumber(intval($data['employee_number']));
+        $this->setWebsite($data['website']);
+        $this->setLegalFormOption($data['legal_form']);
+        $this->setName($data['name']);
+
+        $isCommuneExists = Commune::$commune->isCommune(intval($data['Commune_id']));
+        if ($isCommuneExists === false) {
+            die('Commune non existante, Veillez Bien choisir une commune existante');
+        }
+        $this->setCommuneId(intval($data['Commune_id']));
     }
 
 

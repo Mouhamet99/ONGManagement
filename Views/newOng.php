@@ -51,15 +51,6 @@
                                 <div class="valid-feedback"></div>
                                 <div class="invalid-feedback"></div>
                             </div>
-
-
-<!--                            <div class="col-md-12 my-4">-->
-<!--                                <input class="form-control" type="email" name="email" placeholder="E-mail Address"-->
-<!--                                       required>-->
-<!--                                <div class="valid-feedback">Email field is valid!</div>-->
-<!--                                <div class="invalid-feedback">Email field cannot be blank!</div>-->
-<!--                            </div>-->
-
                             <div class="col-md-12 my-4">
                                 <select class="form-select mt-3" name="sector" required>
                                     <option selected value="">Secteur d'activite</option>
@@ -73,7 +64,12 @@
                             <div class="col-md-12 my-4">
                                 <select class="form-select mt-3" name="legal_form" required>
                                     <option selected value="">Forme Juridique</option>
-                                    <option value="Entreprise unipersonnelle à responsabilité limitée (EURL)">Entreprise unipersonnelle à responsabilité limitée (EURL)	</option>
+                                    <?php
+                                    foreach ($legal_form_options as $key => $option)
+                                        echo <<<EOT
+                                        <option value="{$key}">$option</option>
+                                        EOT;
+                                    ?>
                                 </select>
                                 <div class="valid-feedback">You selected a commune!</div>
                                 <div class="invalid-feedback">Please select a commune!</div>
@@ -81,9 +77,12 @@
                             <div class="col-md-12 my-4">
                                 <select class="form-select mt-3" name="Commune_id" required>
                                     <option selected value="">Commune</option>
-                                    <option value="1">SA</option>
-                                    <option value="1">SUARL</option>
-                                    <option value="1">SARL</option>
+                                    <?php
+                                    foreach ($communes as $key => $commune)
+                                        echo <<<EOT
+                                        <option value="{$commune['id']}">{$commune['name']}</option>
+                                        EOT;
+                                    ?>
                                 </select>
                                 <div class="valid-feedback">You selected a commune!</div>
                                 <div class="invalid-feedback">Please select a commune!</div>
@@ -122,3 +121,18 @@
         </div>
     </div>
 </div>
+<script>
+    window.onload = function () {
+        let submit_btn = document.getElementById("submit");
+        let confirm_btn = document.querySelector('input[name="confirm"]');
+
+        submit_btn.classList.add('disabled');
+        confirm_btn.addEventListener('change', function (e) {
+            if (e.target.checked) {
+                submit_btn.classList.remove('disabled');
+            } else {
+                submit_btn.classList.add('disabled');
+            }
+        });
+    }
+</script>

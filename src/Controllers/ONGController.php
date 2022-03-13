@@ -14,8 +14,8 @@ class ONGController extends Controller
         $company = new Company();
         $companies = $company->all();
 
-        return $this->render('home',[
-            'companies'=> $companies
+        return $this->render('home', [
+            'companies' => $companies
         ]);
 
     }
@@ -23,33 +23,25 @@ class ONGController extends Controller
     public function addONG(Request $request): string
     {
         $company = new Company();
+        $commune = new Commune();
+        $communes = $commune->all();
 
+        $legalformOptions = $company->getLegalFormOptions();
         if ($request->isPostRequest()) {
             $data = $request->getBody($company);
-
             if ($company->validate($data)) {
-
-                $company->setName($data['name']);
-                $company->setAddress($data['address']);
-                $company->setCommercialRegister($data['commercial_register']);
-                $company->setCoordinates($data['coordinates']);
-                $company->setEmployeeNumber(intval($data['employee_number']));
-                $company->setWebsite($data['website']);
-                $company->setLegalForm($data['legal_form']);
-                $commune = new Commune();
-//                $id = Commune::$commune->isCommune(intval($data['commune_id']));
-                $commune_exists = Commune::$commune->isCommune(1);
-                if($commune_exists === false){
-                    die('Commune Existant, Veillez Bien choisir une commune existantes');
-                }
-                $company->setCommuneId(1);
+                $company->persist($data);
                 $company->save($data);
             }
 
-            return 'Form Submitted';
+            header("Location: /ong");
+
         }
 
-        return $this->render('newOng');
+        return $this->render('newOng', [
+            'legal_form_options' => $legalformOptions,
+            'communes'=> $communes
+        ]);
     }
 
 
