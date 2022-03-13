@@ -10,16 +10,14 @@ class ONGController extends Controller
 {
     public function home(): string
     {
-//        $db = new DBConnection('localhost', 'ong_nous_les_femmes','root', '');
-//        $req = $db->getPDO()->query("SELECT * FROM region");
-//        $regions = $req->fetchAll();
-//        var_dump($region);
-//        return json_encode($regions);
 
         $company = new Company();
         $companies = $company->all();
-        return json_encode($companies);
-        return $this->render('home');
+
+        return $this->render('home',[
+            'companies'=> $companies
+        ]);
+
     }
 
     public function addONG(Request $request): string
@@ -46,9 +44,8 @@ class ONGController extends Controller
                 }
                 $company->setCommuneId(1);
                 $company->save($data);
-
-//                echo 'The publisher id ' . $publisher_id . ' was inserted';
             }
+
             return 'Form Submitted';
         }
 
