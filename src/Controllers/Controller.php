@@ -3,14 +3,15 @@
 namespace App\src\Controllers;
 
 use App\core\Application;
+use App\src\Database\DBConnection;
 
-class Controller
+abstract class Controller
 {
     private string $layout = 'main';
 
-    public function render($view): string
+    protected function render($view, array $params = []): string
     {
-        return Application::$app->router->renderView($view);
+        return Application::$app->router->renderView($view, $params);
     }
 
     public function getLayout(): string
@@ -22,4 +23,6 @@ class Controller
     {
         $this->layout = $layout;
     }
+
+
 }
