@@ -204,15 +204,16 @@ class Company extends Model
 
     }
 
-    public function persist(array $data)
+    public function persist(array &$data)
     {
+        $this->setName($data['name']);
         $this->setAddress($data['address']);
-        $this->setCommercialRegister($data['commercial_register']);
         $this->setCoordinates($data['coordinates']);
+        $this->setLegalFormOption($data['legal_form']);
+        $data['legal_form'] = $this->getLegalForm();
+        $this->setCommercialRegister($data['commercial_register']);
         $this->setEmployeeNumber(intval($data['employee_number']));
         $this->setWebsite($data['website']);
-        $this->setLegalFormOption($data['legal_form']);
-        $this->setName($data['name']);
 
         $isCommuneExists = Commune::$commune->isCommune(intval($data['Commune_id']));
         if ($isCommuneExists === false) {

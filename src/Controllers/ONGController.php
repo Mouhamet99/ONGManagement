@@ -30,17 +30,17 @@ class ONGController extends Controller
         if ($request->isPostRequest()) {
             $data = $request->getBody($company);
             if ($company->validate($data)) {
+
                 $company->persist($data);
                 $company->save($data);
             }
-
             header("Location: /ong");
 
         }
 
         return $this->render('newOng', [
             'legal_form_options' => $legalformOptions,
-            'communes'=> $communes
+            'communes' => $communes
         ]);
     }
 
