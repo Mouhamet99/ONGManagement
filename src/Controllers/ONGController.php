@@ -35,7 +35,6 @@ class ONGController extends Controller
                 $company->save($data);
             }
             header("Location: /ong");
-
         }
 
         return $this->render('newOng', [
