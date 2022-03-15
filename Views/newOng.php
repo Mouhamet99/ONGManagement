@@ -1,13 +1,11 @@
 <?php
 ?>
-<div class="container col-md-6 mt-5">
+<div class="container col-md-6 mt-5 mb-2">
     <div class="form-body">
         <div class="row">
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3 class="text-center">Registration</h3>
-                        <p class="text-center">Fill in the data below.</p>
                         <form class="requires-validation" novalidate action="" method="post">
                             <div class="col-md-12 my-4">
                                 <input class="form-control "
@@ -90,20 +88,68 @@
 
 
                             <div class="col-md-12 mt-3 my-4">
-                                <label class="mb-3 mr-1" for="gender">Have You.... </label>
+                                <label class="mb-3 mr-1" for="gender">Organigramme </label>
 
-                                <input type="radio" class="btn-check" name="gender" id="male" value="male"
+                                <input type="radio" class="btn-check" name="organization_chart"
+                                       id="without_organization_chart" value="false"
                                        autocomplete="off" checked>
-                                <label class="btn btn-sm btn-outline-secondary" for="male">Oui</label>
+                                <label class="btn btn-sm btn-outline-primary"
+                                       for="without_organization_chart">Non</label>
 
-                                <input type="radio" class="btn-check" name="gender" id="female" value="female"
+                                <input type="radio" class="btn-check" name="organization_chart"
+                                       id="with_organization_chart" value="true"
                                        autocomplete="off">
-                                <label class="btn btn-sm btn-outline-secondary" for="female">Female</label>
+                                <label class="btn btn-sm btn-outline-primary"
+                                       for="with_organization_chart">Oui</label>
 
                                 <div class="valid-feedback mv-up">You selected a gender!</div>
                                 <div class="invalid-feedback mv-up">Please select a gender!</div>
                             </div>
+                            <div class="col-md-12 mt-3 my-4">
+                                <label class="mb-3 mr-1" for="gender">1) Dispositif de formation </label>
 
+                                <input type="radio" class="btn-check" name="training_device"
+                                       id="without_training_device" value="false"
+                                       autocomplete="off" checked>
+                                <label class="btn btn-sm btn-outline-primary"
+                                       for="without_training_device">Non</label>
+
+                                <input type="radio" class="btn-check" name="training_device" id="with_training_device"
+                                       value="true"
+                                       autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="with_training_device">Oui</label>
+
+                                <div class="valid-feedback mv-up">You selected a gender!</div>
+                                <div class="invalid-feedback mv-up">Please select a gender!</div>
+                            </div>
+                            <div class="col-md-12 mt-3 my-4">
+                                <label class="mb-3 mr-1" for="gender">2) Cotisation Sociale </label>
+
+                                <input type="radio" class="btn-check" name="social_contribution"
+                                       id="without_social_contribution" value="false"
+                                       autocomplete="off" checked>
+                                <label class="btn btn-sm btn-outline-primary"
+                                       for="without_social_contribution">Non</label>
+                                <input type="radio" class="btn-check" name="social_contribution"
+                                       id="with_social_contribution" value="true"
+                                       autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary"
+                                       for="with_social_contribution">Oui</label>
+                                <div class="valid-feedback mv-up">You selected a gender!</div>
+                                <div class="invalid-feedback mv-up">Please select a gender!</div>
+                            </div>
+                            <div class="col-md-12 mt-3 my-4">
+                                <label class="mb-3 mr-1" for="gender">2) Contract </label>
+                                <input type="radio" class="btn-check" name="contract" id="without_contract"
+                                       value="false"
+                                       autocomplete="off" checked>
+                                <label class="btn btn-sm btn-outline-primary" for="without_contract">Non</label>
+                                <input type="radio" class="btn-check" name="contract" id="with_contract" value="true"
+                                       autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="with_contract">Oui</label>
+                                <div class="valid-feedback mv-up">You selected a gender!</div>
+                                <div class="invalid-feedback mv-up">Please select a gender!</div>
+                            </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="yes" name="confirm"
                                        id="invalidCheck" required>
@@ -112,7 +158,7 @@
                                 </div>
                             </div>
                             <div class="form-button mt-3">
-                                <button id="submit" type="submit" class="btn btn-primary">Register</button>
+                                <button id="submit" type="submit" class="btn btn w-100 btn-primary">Register</button>
                             </div>
                         </form>
                     </div>
