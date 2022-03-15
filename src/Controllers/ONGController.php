@@ -10,6 +10,7 @@ class ONGController extends Controller
 {
     public function home(): string
     {
+      $this->isConnected();
 
         $company = new Company();
         $companies = $company->all();
@@ -22,13 +23,16 @@ class ONGController extends Controller
 
     public function addONG(Request $request): string
     {
+              $this->isConnected();
+
         $company = new Company();
         $commune = new Commune();
         $communes = $commune->all();
-
         $legalformOptions = $company->getLegalFormOptions();
+
         if ($request->isPostRequest()) {
             $data = $request->getBody($company);
+
             if ($company->validate($data)) {
 
                 $company->persist($data);
@@ -42,6 +46,8 @@ class ONGController extends Controller
             'communes' => $communes
         ]);
     }
+
+
 
 
 }
