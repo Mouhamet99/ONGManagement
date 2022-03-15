@@ -262,25 +262,6 @@ class Company extends Model
         $this->Commune_id = $Commune_id;
     }
 
-
-    public function validate(array $data)
-    {
-        return true;
-    }
-
-    public function save($data)
-    {
-        $attributes = implode(',', array_keys($data));
-        $params = implode(',', array_map((fn($value): string => '?'), $data));
-        $sql = "INSERT INTO {$this->table} ({$attributes}) VALUES ($params)";
-        $stmt = self::$db->getPDO()->prepare($sql);
-        $stmt->execute(array_values($data));
-
-        return "Company Added Successfully";
-
-
-    }
-
     public function persist(array &$data)
     {
         $this->setName($data['name']);

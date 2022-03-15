@@ -48,6 +48,7 @@ abstract class Model
         $stm->execute($id);
         return $stm->fetch();
     }
+
     public function find($id)
     {
         $stm = self::$db->getPDO()->prepare("SELECT * FROM $this->table WHERE id=?");
@@ -55,5 +56,22 @@ abstract class Model
         return $stm->fetch();
     }
 
+    public function validate(array $data)
+    {
+        return true;
+    }
+
+    public function save($data)
+    {
+        $attributes = implode(',', array_keys($data));
+        $params = implode(',', array_map((fn($value): string => '?'), $data));
+        $sql = "INSERT INTO {$this->table} ({$attributes}) VALUES ($params)";
+        $stmt = self::$db->getPDO()->prepare($sql);
+        $stmt->execute(array_values($data));
+
+        return "$this->table Added Successfully";
+
+
+    }
 
 }

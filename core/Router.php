@@ -56,8 +56,11 @@ class Router
         return str_replace('{{body_content}}', $viewContent, $layoutContent);
     }
 
-    public function renderOnlyView($view)
+    public function renderOnlyView($view, $params = [])
     {
+        foreach ($params as $key=>$value){
+            $$key = $value;
+        }
         return include_once Application::$ROOT_PATH . "/Views/$view.php";
     }
 
