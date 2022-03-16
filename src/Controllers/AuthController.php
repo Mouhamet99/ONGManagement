@@ -15,7 +15,6 @@ class AuthController extends Controller
             session_destroy();
         }
         header("Location: /");
-
     }
 
     public function login(Request $request): string

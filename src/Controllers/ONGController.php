@@ -10,7 +10,7 @@ class ONGController extends Controller
 {
     public function home(): string
     {
-      $this->isConnected();
+        $this->isConnected();
 
         $company = new Company();
         $companies = $company->all();
@@ -23,7 +23,7 @@ class ONGController extends Controller
 
     public function addONG(Request $request): string
     {
-              $this->isConnected();
+        $this->isConnected();
 
         $company = new Company();
         $commune = new Commune();
@@ -47,7 +47,26 @@ class ONGController extends Controller
         ]);
     }
 
+    public function removeONG($id): string
+    {
+        return "DELETE".$id;
 
+        $this->isConnected();
+        var_dump($_SESSION);
+
+        $company = new Company();
+        $process = $company->remove($id);
+        if($process){
+            header('Location: /ong');
+        }
+
+        return 'remove' . $id;
+    }
+
+    public function editONG($id)
+    {
+        echo "EDIT".$id;
+    }
 
 
 }

@@ -56,6 +56,19 @@ abstract class Model
         return $stm->fetch();
     }
 
+    public function remove($id)
+    {
+        try {
+            $sql = "DELETE FROM $this->table WHERE id=?";
+            $stm = self::$db->getPDO()->prepare($sql);
+            $stm->execute([$id]);
+
+            return true;
+        } catch (\PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function validate(array $data)
     {
         return true;

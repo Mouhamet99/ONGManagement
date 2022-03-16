@@ -36,9 +36,9 @@
                                            title="detail entreprise">
                                             <i class="fas fa-circle-info"></i>
                                         </a>
-                                        <a href="" class="p-2" title="mofifier entreprise"><i
+                                        <a href="/ong/edit/{$company['id']}" class="p-2" title="mofifier entreprise"><i
                                                 class="fa-solid fa-edit text-warning"></i></a>
-                                        <a href="" class="p-2"
+                                        <a href="/ong/remove/{$company['id']}" class="p-2"
                                            title="supprimer entreprise">
                                             <i class="fa-solid fa-trash text-danger"></i>
                                         </a>

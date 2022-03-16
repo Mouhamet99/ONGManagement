@@ -4,16 +4,45 @@ namespace App\core;
 
 class Request
 {
+    private string $realPath = '';
 
     public function getPath(): string
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
         $position = strpos($path, '?');
-
         if ($position !== false) {
             $path = substr($path, 0, $position);
         }
+
+
+        $pattern = '/(edit|remove)\/\d+$/';
+        $result = preg_match($pattern, $path, $matches);
+        if ($result === 1) {
+            $this->setRealPath($path);
+            $path = "/ong/$matches[1]/id";
+        }
+
+
         return $path;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getRealPath(): string
+    {
+        return $this->realPath;
+    }
+
+    /**
+     * @param string $realPath
+     * @return Request
+     */
+    public function setRealPath(string $realPath): Request
+    {
+        $this->realPath = $realPath;
+        return $this;
     }
 
     public function getMethod(): string
