@@ -14,6 +14,7 @@ class Company extends Model
     private string $address = "";
     private string $legal_form = 'Entreprise unipersonnelle à responsabilité limitée (EURL)';
     private int $Commune_id;
+    protected array $sector_options = ['education', 'sante','agriculture','elevage','peche'];
     protected array $legal_form_options = array(
         'EURL' => 'Entreprise unipersonnelle à responsabilité limitée (EURL)',
         'SARL' => 'Société à responsabilité limitée (SARL)',
@@ -260,6 +261,15 @@ class Company extends Model
     public function setCommuneId(int $Commune_id): void
     {
         $this->Commune_id = $Commune_id;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getSectorOptions(): array
+    {
+        return $this->sector_options;
     }
 
     public function persist(array &$data)

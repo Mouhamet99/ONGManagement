@@ -75,8 +75,9 @@ abstract class Model
     public function save($data)
     {
         $attributes = implode(',', array_keys($data));
-        $params = implode(',', array_map((fn($value): string => '?'), $data));
-        $sql = "INSERT INTO {$this->table} ({$attributes}) VALUES ($params)";
+        $params = array_map((fn($value): string => '?'), $data);
+        $params = implode(',', $params);
+        $sql = "INSERT INTO $this->table ($attributes) VALUES ($params)";
         $stmt = self::$db->getPDO()->prepare($sql);
         $stmt->execute(array_values($data));
 

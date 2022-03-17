@@ -49,7 +49,7 @@ class Router
         $realPath = $this->request->getRealPath();
         $result = preg_match($pattern, $realPath, $matches);
         if ($result === 1) {
-            return call_user_func($callback, $matches[2]);
+            return call_user_func($callback, $matches[2], $this->request);
         }
 
         return call_user_func($callback, $this->request);

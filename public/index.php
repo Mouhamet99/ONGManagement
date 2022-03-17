@@ -17,6 +17,7 @@ $app->router->get('/ong/new',[ONGController::class, 'addONG']);
 $app->router->post('/ong/new',[ONGController::class, 'addONG']);
 $app->router->get("/ong/remove/id",[ONGController::class, 'removeONG']);
 $app->router->get('/ong/edit/id',[ONGController::class, 'editONG']);
+$app->router->post('/ong/edit/id',[ONGController::class, 'editONG']);
 
 
 $app->run();
