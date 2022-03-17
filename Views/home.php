@@ -1,4 +1,9 @@
-
+<!--<div class="alert alert-success " role="alert" id="success-alert" >-->
+<!--  Ajout effectuée avec Success.-->
+<!--</div>-->
+<!--<div class="alert alert-danger " role="alert" id="success-delete-alert" >-->
+<!--  Suppression effectuée avec Success-->
+<!--</div>-->
 <div class="container-fluid pt-5 pb-1">
     <div class="row py-2">
         <div class="col-lg-11 mx-auto">
@@ -69,4 +74,9 @@
             $('#example').DataTable();
         });
     });
+
+    // $("#success-alert").fadeOut(0);
+    // $("#success-delete-alert").fadeOut(0);
+    // $("#success-alert").delay(1500).fadeIn(500);
+    // $("#success-delete-alert").delay(3000).fadeIn(500);
 </script>

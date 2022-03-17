@@ -47,25 +47,20 @@ class ONGController extends Controller
         ]);
     }
 
-    public function removeONG($id): string
+    public function removeONG(int $id): string
     {
-        return "DELETE".$id;
-
         $this->isConnected();
-        var_dump($_SESSION);
 
         $company = new Company();
-        $process = $company->remove($id);
-        if($process){
-            header('Location: /ong');
-        }
+        $company->remove($id);
 
-        return 'remove' . $id;
+        header('Location: /ong');
+
     }
 
-    public function editONG($id)
+    public function editONG(int $id)
     {
-        echo "EDIT".$id;
+        echo "EDIT" . $id;
     }
 
 

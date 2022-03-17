@@ -62,8 +62,6 @@ abstract class Model
             $sql = "DELETE FROM $this->table WHERE id=?";
             $stm = self::$db->getPDO()->prepare($sql);
             $stm->execute([$id]);
-
-            return true;
         } catch (\PDOException $e) {
             die($e->getMessage());
         }
