@@ -3,6 +3,7 @@
 namespace App\src\Models;
 
 use App\src\Database\DBConnection;
+use PDO;
 
 abstract class Model
 {
@@ -20,7 +21,7 @@ abstract class Model
     /**
      * @param mixed $table
      */
-    public function setTable($table): void
+    public function setTable(string $table): void
     {
         $this->table = $table;
     }
@@ -35,12 +36,7 @@ abstract class Model
         return self::$db;
     }
 
-    public function all()
-    {
-        $stm = self::$db->getPDO()->query("SELECT * FROM $this->table");
-        return $stm->fetchAll();
-    }
-
+    public static abstract function all();
 
     public function findById($id, ?string $table)
     {
@@ -85,5 +81,6 @@ abstract class Model
 
 
     }
+
 
 }

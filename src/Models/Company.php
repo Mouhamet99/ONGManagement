@@ -14,8 +14,8 @@ class Company extends Model
     private string $address = "";
     private string $legal_form = 'Entreprise unipersonnelle à responsabilité limitée (EURL)';
     private int $Commune_id;
-    protected array $sector_options = ['education', 'sante','agriculture','elevage','peche'];
-    protected array $legal_form_options = array(
+    protected static array $sector_options = ['education', 'sante', 'agriculture', 'elevage', 'peche'];
+    protected static array $legal_form_options = array(
         'EURL' => 'Entreprise unipersonnelle à responsabilité limitée (EURL)',
         'SARL' => 'Société à responsabilité limitée (SARL)',
         'SA' => 'Société anonyme (SA)',
@@ -233,9 +233,9 @@ class Company extends Model
     /**
      * @return array
      */
-    public function getLegalFormOptions(): array
+    public static function getLegalFormOptions(): array
     {
-        return $this->legal_form_options;
+        return self::$legal_form_options;
     }
 
     /**
@@ -243,7 +243,7 @@ class Company extends Model
      */
     public function setLegalFormOption(string $option): void
     {
-        $this->legal_form = $this->legal_form_options[$option];
+        $this->legal_form = self::$legal_form_options[$option];
     }
 
 
@@ -267,9 +267,9 @@ class Company extends Model
     /**
      * @return array
      */
-    public function getSectorOptions(): array
+    public static function getSectorOptions(): array
     {
-        return $this->sector_options;
+        return self::$sector_options;
     }
 
     public function persist(array &$data)
@@ -300,5 +300,25 @@ class Company extends Model
         $this->setCommuneId(intval($data['Commune_id']));
     }
 
+
+    public function update($id, $data)
+    {
+        $attributes = implode('=?, ', array_keys($data));
+        $sql = "UPDATE $this->table SET $attributes=? WHERE id=$id ";
+        $stmt = self::$db->getPDO()->prepare($sql);
+        
+        if ($stmt->execute(array_values($data))) {
+            return "$this->table Edited Successfully";
+        }
+
+
+    }
+
+    public static function all()
+    {
+        $stm = self::$db->getPDO()->query("SELECT * FROM company ");
+        return $stm->fetchAll();
+
+    }
 
 }

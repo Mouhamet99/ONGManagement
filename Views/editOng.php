@@ -157,13 +157,13 @@
                                 <div class="valid-feedback mv-up">You selected a gender!</div>
                                 <div class="invalid-feedback mv-up">Please select a gender!</div>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="yes" name="confirm"
-                                       id="invalidCheck" required>
-                                <label class="form-check-label">I confirm that all data are correct</label>
-                                <div class="invalid-feedback">Please confirm that the entered data are all correct!
-                                </div>
-                            </div>
+<!--                            <div class="form-check">-->
+<!--                                <input class="form-check-input" type="checkbox" value="yes" name="confirm"-->
+<!--                                       id="invalidCheck" required>-->
+<!--                                <label class="form-check-label">I confirm that all data are correct</label>-->
+<!--                                <div class="invalid-feedback">Please confirm that the entered data are all correct!-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="form-button mt-3">
                                 <button id="submit" type="submit" class="btn btn w-100 btn-warning">Enregistrer les
                                     modifications
@@ -178,16 +178,16 @@
 </div>
 <script>
     window.onload = function () {
-        let submit_btn = document.getElementById("submit");
-        let confirm_btn = document.querySelector('input[name="confirm"]');
-
-        submit_btn.classList.add('disabled');
-        confirm_btn.addEventListener('change', function (e) {
-            if (e.target.checked) {
-                submit_btn.classList.remove('disabled');
-            } else {
-                submit_btn.classList.add('disabled');
-            }
-        });
+        // let submit_btn = document.getElementById("submit");
+        // let confirm_btn = document.querySelector('input[name="confirm"]');
+        //
+        // submit_btn.classList.add('disabled');
+        // confirm_btn.addEventListener('change', function (e) {
+        //     if (e.target.checked) {
+        //         submit_btn.classList.remove('disabled');
+        //     } else {
+        //         submit_btn.classList.add('disabled');
+        //     }
+        // });
     }
 </script>

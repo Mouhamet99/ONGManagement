@@ -49,6 +49,10 @@ class Request
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
+    public function getFormData(): object
+    {
+        return (object)$_POST;
+    }
 
     public function idGet(): bool
     {

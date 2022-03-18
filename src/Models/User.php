@@ -107,5 +107,10 @@ class User extends Model
             header("Location: /");
         }
     }
+   public static function all()
+    {
+        $stm = self::$db->getPDO()->query("SELECT * FROM user ");
+        return $stm->fetchAll();
 
+   }
 }
