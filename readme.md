@@ -1,16 +1,20 @@
 
+[//]: # ()
+[//]: # (<p align="center">)
 
-<p align="center">
-  <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&style=for-the-badge&color=24B36B&labelColor=000000" alt="PRs welcome!" />
-  <img alt="License" src="https://img.shields.io/github/license/jkytoela/next-startd?style=for-the-badge&color=24B36B&labelColor=000000">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/jkytoela/next-startd?style=for-the-badge&color=24B36B&labelColor=000000">
-</p>
+[//]: # (  <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&style=for-the-badge&color=24B36B&labelColor=000000" alt="PRs welcome!" />)
+
+[//]: # (  <img alt="License" src="https://img.shields.io/github/license/jkytoela/next-startd?style=for-the-badge&color=24B36B&labelColor=000000">)
+
+[//]: # (  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/jkytoela/next-startd?style=for-the-badge&color=24B36B&labelColor=000000">)
+
+[//]: # (</p>)
 
 <br>
 
 <h1 align="center">
-    PHP MVC
-  <a href="https://madeinsenegal.dev/" target="blank_">From Senegal</a>
+    PHP MVC PROJECT
+  <a href="https://madeinsenegal.dev/" target="blank_"></a>
   <br/>
   <img src="https://raw.githubusercontent.com/GalsenDev221/made.in.senegal/master/assets/made.in.senegal.png" width="100px" />
   <br/>
@@ -42,7 +46,7 @@ The best implementation of the **Model-View-Controller** architectural pattern i
 
 
 
-[//]: # (Here is the <a href="">Video demo</a>)
+Here is the <a href="https://www.loom.com/share/6f9489d26df443d984765718c794268f">Video demo</a>
 
 [//]: # (- ⚡ **Next.js** — The React Framework)
 

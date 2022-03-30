@@ -24,6 +24,7 @@ class ONGController extends Controller
         $this->isConnected();
 
         $company = new Company();
+        $commune = new Commune();
 
         if ($request->isPostRequest()) {
             $data = $request->getBody($company);
