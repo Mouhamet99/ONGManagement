@@ -15,7 +15,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/auth.css">
-    <title>{{title}}</title>
+    <title></title>
 </head>
 <body>
 

@@ -45,5 +45,11 @@ class Commune extends Model
         return $commune['id'] == $id;
     }
 
+    public static function all()
+    {
+        $stm = self::$db->getPDO()->query("SELECT * FROM commune ");
+        return $stm->fetchAll();
+
+    }
 
 }

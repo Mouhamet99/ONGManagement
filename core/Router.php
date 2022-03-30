@@ -32,6 +32,7 @@ class Router
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
 
+
         if ($callback === false) {
             $this->response->setStatusCode('404');
             return $this->renderView('_404');
@@ -41,7 +42,14 @@ class Router
         }
         if (is_array($callback)) {
             Application::$app->setController(new $callback[0]());
-            $callback[0] = Application::$app->controller;
+            $callback[0] = Application::$app->getController();
+        }
+
+        $pattern = '/(edit|remove)\/(\d+)$/';
+        $realPath = $this->request->getRealPath();
+        $result = preg_match($pattern, $realPath, $matches);
+        if ($result === 1) {
+            return call_user_func($callback, $matches[2], $this->request);
         }
 
         return call_user_func($callback, $this->request);
@@ -58,7 +66,7 @@ class Router
 
     public function renderOnlyView($view, $params = [])
     {
-        foreach ($params as $key=>$value){
+        foreach ($params as $key => $value) {
             $$key = $value;
         }
         return include_once Application::$ROOT_PATH . "/Views/$view.php";

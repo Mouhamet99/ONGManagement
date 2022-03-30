@@ -3,6 +3,7 @@
 namespace App\src\Models;
 
 use App\src\Database\DBConnection;
+use PDO;
 
 abstract class Model
 {
@@ -20,7 +21,7 @@ abstract class Model
     /**
      * @param mixed $table
      */
-    public function setTable($table): void
+    public function setTable(string $table): void
     {
         $this->table = $table;
     }
@@ -35,12 +36,7 @@ abstract class Model
         return self::$db;
     }
 
-    public function all()
-    {
-        $stm = self::$db->getPDO()->query("SELECT * FROM $this->table");
-        return $stm->fetchAll();
-    }
-
+    public static abstract function all();
 
     public function findById($id, ?string $table)
     {
@@ -56,6 +52,17 @@ abstract class Model
         return $stm->fetch();
     }
 
+    public function remove($id)
+    {
+        try {
+            $sql = "DELETE FROM $this->table WHERE id=?";
+            $stm = self::$db->getPDO()->prepare($sql);
+            $stm->execute([$id]);
+        } catch (\PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function validate(array $data)
     {
         return true;
@@ -64,8 +71,9 @@ abstract class Model
     public function save($data)
     {
         $attributes = implode(',', array_keys($data));
-        $params = implode(',', array_map((fn($value): string => '?'), $data));
-        $sql = "INSERT INTO {$this->table} ({$attributes}) VALUES ($params)";
+        $params = array_map((fn($value): string => '?'), $data);
+        $params = implode(',', $params);
+        $sql = "INSERT INTO $this->table ($attributes) VALUES ($params)";
         $stmt = self::$db->getPDO()->prepare($sql);
         $stmt->execute(array_values($data));
 
@@ -73,5 +81,6 @@ abstract class Model
 
 
     }
+
 
 }
