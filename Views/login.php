@@ -25,18 +25,23 @@
         <div class="col-md-6 offset-md-3">
             <h2 class="text-center text-dark mt-5">💃🖐Welcome💃🖐</h2>
             <div class="card my-5">
-                <form class="card-body cardbody-color p-lg-5">
+                <form class="card-body cardbody-color p-lg-5" action="/login" method="post">
                     <div class="text-center">
                         <img src="/img/undraw_welcome_cats_thqn.png"
                              class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
                              width="200px" alt="profile">
                     </div>
+                    <?php if ( isset($error) && $error === true): ?>
+                        <div class="text-danger my-2 text-center">Login ou Mot de passe incorrect</div>
+                    <?php endif; ?>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="Username" aria-describedby="emailHelp"
+                        <input type="text" class="form-control" name="username" id="Username"
+                               aria-describedby="emailHelp"
                                placeholder="User Name">
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" id="password" placeholder="password">
+                        <input type="password" class="form-control" name="password" id="password"
+                               placeholder="password">
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary px-5 mb-5 w-100">Login</button>

@@ -14,7 +14,8 @@ class Company extends Model
     private string $address = "";
     private string $legal_form = 'Entreprise unipersonnelle à responsabilité limitée (EURL)';
     private int $Commune_id;
-    protected array $legal_form_options = array(
+    protected static array $sector_options = ['education', 'sante', 'agriculture', 'elevage', 'peche'];
+    protected static array $legal_form_options = array(
         'EURL' => 'Entreprise unipersonnelle à responsabilité limitée (EURL)',
         'SARL' => 'Société à responsabilité limitée (SARL)',
         'SA' => 'Société anonyme (SA)',
@@ -23,6 +24,83 @@ class Company extends Model
         'SCOP' => 'Société coopérative de production (SCOP)',
         'SCA' => 'Société en commandite par actions (SCA)'
     );
+
+    private bool $organization_chart = false;
+    private bool $contract = false;
+    private bool $training_device = false;
+    private bool $social_contribution = false;
+
+    /**
+     * @return bool
+     */
+    public function isOrganizationChart(): bool
+    {
+        return $this->organization_chart;
+    }
+
+    /**
+     * @param bool $organization_chart
+     * @return Company
+     */
+    public function setOrganizationChart(bool $organization_chart): Company
+    {
+        $this->organization_chart = $organization_chart;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isContract(): bool
+    {
+        return $this->contract;
+    }
+
+    /**
+     * @param bool $contract
+     * @return Company
+     */
+    public function setContract(bool $contract): Company
+    {
+        $this->contract = $contract;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTrainingDevice(): bool
+    {
+        return $this->training_device;
+    }
+
+    /**
+     * @param bool $training_device
+     * @return Company
+     */
+    public function setTrainingDevice(bool $training_device): Company
+    {
+        $this->training_device = $training_device;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSocialContribution(): bool
+    {
+        return $this->social_contribution;
+    }
+
+    /**
+     * @param bool $social_contribution
+     * @return Company
+     */
+    public function setSocialContribution(bool $social_contribution): Company
+    {
+        $this->social_contribution = $social_contribution;
+        return $this;
+    }
 
     /**
      * @return string
@@ -155,9 +233,9 @@ class Company extends Model
     /**
      * @return array
      */
-    public function getLegalFormOptions(): array
+    public static function getLegalFormOptions(): array
     {
-        return $this->legal_form_options;
+        return self::$legal_form_options;
     }
 
     /**
@@ -165,7 +243,7 @@ class Company extends Model
      */
     public function setLegalFormOption(string $option): void
     {
-        $this->legal_form = $this->legal_form_options[$option];
+        $this->legal_form = self::$legal_form_options[$option];
     }
 
 
@@ -186,22 +264,12 @@ class Company extends Model
     }
 
 
-    public function validate(array $data)
+    /**
+     * @return array
+     */
+    public static function getSectorOptions(): array
     {
-        return true;
-    }
-
-    public function save($data)
-    {
-        $attributes = implode(',', array_keys($data));
-        $params = implode(',', array_map((fn($value): string => '?'), $data));
-        $sql = "INSERT INTO {$this->table} ({$attributes}) VALUES ($params)";
-        $stmt = self::$db->getPDO()->prepare($sql);
-        $stmt->execute(array_values($data));
-
-        return "Company Added Successfully";
-
-
+        return self::$sector_options;
     }
 
     public function persist(array &$data)
@@ -209,11 +277,21 @@ class Company extends Model
         $this->setName($data['name']);
         $this->setAddress($data['address']);
         $this->setCoordinates($data['coordinates']);
-        $this->setLegalFormOption($data['legal_form']);
-        $data['legal_form'] = $this->getLegalForm();
         $this->setCommercialRegister($data['commercial_register']);
         $this->setEmployeeNumber(intval($data['employee_number']));
         $this->setWebsite($data['website']);
+
+        $this->setLegalFormOption($data['legal_form']);
+        $data['contract'] = $data['contract'] === "true";
+        $data['organization_chart'] = $data['organization_chart'] === "true";
+        $data['training_device'] = $data['training_device'] === "true";
+        $data['social_contribution'] = $data['social_contribution'] === "true";
+        $data['legal_form'] = $this->getLegalForm();
+
+        $this->setContract($data['contract']);
+        $this->setOrganizationChart($data['organization_chart']);
+        $this->setTrainingDevice($data['training_device']);
+        $this->setSocialContribution($data['social_contribution']);
 
         $isCommuneExists = Commune::$commune->isCommune(intval($data['Commune_id']));
         if ($isCommuneExists === false) {
@@ -222,5 +300,25 @@ class Company extends Model
         $this->setCommuneId(intval($data['Commune_id']));
     }
 
+
+    public function update($id, $data)
+    {
+        $attributes = implode('=?, ', array_keys($data));
+        $sql = "UPDATE $this->table SET $attributes=? WHERE id=$id ";
+        $stmt = self::$db->getPDO()->prepare($sql);
+        
+        if ($stmt->execute(array_values($data))) {
+            return "$this->table Edited Successfully";
+        }
+
+
+    }
+
+    public static function all()
+    {
+        $stm = self::$db->getPDO()->query("SELECT * FROM company ");
+        return $stm->fetchAll();
+
+    }
 
 }

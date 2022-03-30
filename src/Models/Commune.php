@@ -36,31 +36,20 @@ class Commune extends Model
         return true;
     }
 
-    public function save()
-    {
-//        $attributes = implode(',', array_keys($data));
-//        $values = implode(',', array_map((fn($value): string => ':' . $value), array_values($data)));
-//
-//        $sql = "INSERT INTO $this->table ($attributes) VALUES ($values)";
-////    (name, coordinates, commercial_register, sector, website,employee_number, address, Commune_id)
-//
-//        $stmt = self::$db->getPDO()->prepare($sql);
-//        foreach ($data as $name => $value) {
-//            $stmt->bindParam(":$name", $value);
-//        }
-//        $stmt->execute();
-//        return self::$db->getPDO()->lastInsertId();
-
-
-    }
     public function isCommune($id): bool
     {
         $commune = $this->find($id);
-        if($commune === false){
+        if ($commune === false) {
             return false;
         }
         return $commune['id'] == $id;
     }
 
+    public static function all()
+    {
+        $stm = self::$db->getPDO()->query("SELECT * FROM commune ");
+        return $stm->fetchAll();
+
+    }
 
 }
