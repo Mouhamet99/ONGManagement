@@ -26,7 +26,6 @@ class AuthController extends Controller
             $user->getUser($userData);
 
             if ($user->getUsername() === "") {
-                echo "false credentials";
                 return Application::$app->router->renderOnlyView('login', ['error' => true]);
             }
 

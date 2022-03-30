@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <!--   CUSTOM CSS -->
     <link rel="stylesheet" href="/css/main.css">
-    <title>{{title}}</title>
+    <title></title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
