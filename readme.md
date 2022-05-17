@@ -38,14 +38,6 @@ The best implementation of the **Model-View-Controller** architectural pattern i
 ## Requirements
 * PHP 7.x
 
-
-
-
-
-
-
-
-
 Here is the <a href="https://www.loom.com/share/6f9489d26df443d984765718c794268f">Video demo</a>
 
 [//]: # (- ⚡ **Next.js** — The React Framework)
@@ -74,29 +66,30 @@ Here is the <a href="https://www.loom.com/share/6f9489d26df443d984765718c794268f
 
 Follow the step above inside the project folder:
 
-
-
-
+### 🔌👉Clone Project
+```Terminal```
+```shell
+git clone https://github.com/Mouhamet99/ONGManagement.git   
+```
 ### 🔌👉Install dependency
 ```Terminal```
 ```shell
 composer install  
 ```
-### 👉Configure our database in .env file
-It's already Configure but you can Configure your own
+
+### 👉Configure your one database in Model.php
+Here is mine: 
 ```Terminal```
-```env
-DATABASE_URL="mysql://root:@db_docker_symfony/db_kritek_test?serverVersion=5.7&charset=utf8mb4
+```php
+  public function __construct()
+    {
+        self::$db = new DBConnection('localhost', 'ong_nous_les_femmes', 'root', '');
+    }
 ```
 ###👉 Create database using Doctrine
 ```Terminal```
 ```shell
 php bin/console doctrine:database:create
-```
-### 👉Run Migrations
-```Terminal```
-```shell
-php bin/console doctrine:migrations:migrate
 ```
 #That's it !!!!💥💥💥
 Start Running your server and
@@ -117,6 +110,3 @@ Enjoy it!!!!💥💥💥
 Consider contributing to the original TypeScript Starter, which you can find [here](https://github.com/jpedroschmitz).
 
 **After your pull request is merged**, you can safely delete your branch.
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more information.
